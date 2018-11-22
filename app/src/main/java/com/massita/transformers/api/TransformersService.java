@@ -1,6 +1,7 @@
 package com.massita.transformers.api;
 
 import com.massita.transformers.api.model.Transformer;
+import com.massita.transformers.api.model.Transformers;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface TransformersService {
     Single<Response<Transformer>> addTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
 
     @GET("transformers")
-    Single<Response<List<Transformer>>> getTransformers(@Header("Authorization") String authorization);
+    Single<Response<Transformers>> getTransformers(@Header("Authorization") String authorization);
 
     @PUT("transformers")
     Single<Response<Transformer>> updateTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);

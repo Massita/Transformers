@@ -3,6 +3,7 @@ package com.massita.transformers.feature.dashboard.fragments;
 import com.massita.transformers.api.RestClient;
 import com.massita.transformers.api.TransformersService;
 import com.massita.transformers.api.model.Transformer;
+import com.massita.transformers.api.model.Transformers;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
 import java.util.List;
@@ -39,21 +40,23 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     @Override
     public void loadTransformers() {
         Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
-                .flatMap((t) -> mService.getTransformers(t))
+                .flatMap((t) -> mService.getTransformers("Bearer " + t))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(this::onLoadSucceed)
                 .doOnError(this::onLoadError)
                 .subscribe();
+
+        mCompositeDisposable.add(disposable);
     }
 
     private void onLoadError(Throwable throwable) {
         //TODO
     }
 
-    private void onLoadSucceed(Response<List<Transformer>> listResponse) {
-        if(listResponse.isSuccessful()) {
-            mView.showList(listResponse.body());
+    private void onLoadSucceed(Response<Transformers> listResponse) {
+        if(listResponse.isSuccessful() && listResponse.body() != null) {
+            mView.showList(listResponse.body().getTransformers());
         }
     }
 
