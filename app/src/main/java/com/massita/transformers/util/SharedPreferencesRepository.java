@@ -17,4 +17,10 @@ public class SharedPreferencesRepository {
     public String getToken() {
         return mSharedPreferences.getString(SHARED_PREFERENCES_TOKEN, null);
     }
+
+    public void setToken(String token) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(SHARED_PREFERENCES_TOKEN, token);
+        editor.apply();
+    }
 }
