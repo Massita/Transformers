@@ -12,6 +12,8 @@ public interface DashboardFragmentContract {
 
         void hideLoading();
 
+        void prepareRecyclerView();
+
         void showList(List<Transformer> transformersList);
 
     }
@@ -21,6 +23,8 @@ public interface DashboardFragmentContract {
         void start();
 
         void loadTransformers();
+
+        void onDestroy();
 
     }
 

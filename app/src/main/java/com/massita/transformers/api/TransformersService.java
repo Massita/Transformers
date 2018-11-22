@@ -17,19 +17,16 @@ import retrofit2.http.Path;
 
 public interface TransformersService {
 
-    @GET("allspark")
-    Observable<Single<String>> getToken();
-
     @POST("transformers")
-    Observable<Response<Transformer>> addTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
+    Single<Response<Transformer>> addTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
 
     @GET("transformers")
-    Observable<Response<List<Transformer>>> getTransformers(@Header("Authorization") String authorization);
+    Single<Response<List<Transformer>>> getTransformers(@Header("Authorization") String authorization);
 
     @PUT("transformers")
-    Observable<Response<Transformer>> updateTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
+    Single<Response<Transformer>> updateTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
 
     @DELETE("transformers/{id}")
-    Observable<Response<Void>> deleteTransformer(@Header("Authorization") String authorization, @Path("id") int transformerId);
+    Single<Response<Void>> deleteTransformer(@Header("Authorization") String authorization, @Path("id") int transformerId);
 
 }
