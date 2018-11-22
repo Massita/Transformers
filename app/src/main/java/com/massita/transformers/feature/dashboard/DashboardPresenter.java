@@ -13,4 +13,8 @@ public class DashboardPresenter implements DashboardContract.Presenter {
         mView.startDashboardFragment();
     }
 
+    @Override
+    public void onAddNewTransformer() {
+        mView.startAddNewTransformerActivity();
+    }
 }

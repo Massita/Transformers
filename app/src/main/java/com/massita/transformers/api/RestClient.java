@@ -54,8 +54,7 @@ public class RestClient {
         String token = sharedPreferencesRepository.getToken();
 
         if(token == null) {
-            token = getTokenService().getToken().blockingGet();
-            sharedPreferencesRepository.setToken(token);
+            return getTokenService().getToken();
         }
 
         return Single.just(token);

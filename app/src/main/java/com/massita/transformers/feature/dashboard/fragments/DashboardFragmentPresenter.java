@@ -40,7 +40,10 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     @Override
     public void loadTransformers() {
         Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
-                .flatMap((t) -> mService.getTransformers("Bearer " + t))
+                .flatMap((t) -> {
+                    mSharedPreferencesRepository.setToken(t);
+                    return mService.getTransformers("Bearer " + t);
+                } )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(this::onLoadSucceed)
