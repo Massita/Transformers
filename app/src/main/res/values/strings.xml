@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Transformers</string>
+    <string name="image_view_team_description">Team\'s avatar</string>
 </resources>

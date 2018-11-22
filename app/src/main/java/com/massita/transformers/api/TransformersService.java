@@ -30,6 +30,6 @@ public interface TransformersService {
     Observable<Response<Transformer>> updateTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
 
     @DELETE("transformers/{id}")
-    Observable<Response<Void>> deleteTransformer(@Header("Authorization") String authorization, @Path("id") String transformerId);
-    
+    Observable<Response<Void>> deleteTransformer(@Header("Authorization") String authorization, @Path("id") int transformerId);
+
 }

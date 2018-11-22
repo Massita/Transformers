@@ -1,9 +1,12 @@
 package com.massita.transformers.feature.dashboard;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import com.massita.transformers.R;
+import com.massita.transformers.feature.dashboard.fragments.DashboardFragment;
 
 public class DashboardActivity extends AppCompatActivity implements DashboardContract.View {
 
@@ -20,6 +23,12 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
 
     @Override
     public void startDashboardFragment() {
-        // TODO
+        Fragment fragment = DashboardFragment.newInstance();
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+
     }
+
 }
