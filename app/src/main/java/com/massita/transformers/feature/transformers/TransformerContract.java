@@ -1,4 +1,17 @@
 package com.massita.transformers.feature.transformers;
 
-public class TransformerContract {
+public interface TransformerContract {
+
+    interface View {
+
+        void showNewTransformerFragment();
+
+    }
+
+    interface Presenter {
+
+        void start();
+
+    }
+
 }
