@@ -32,8 +32,8 @@ public class BattlePresenter implements BattleContract.Presenter {
                 .flatMap(Battle::fight)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSuccess(this::onLoadSucceed)
-                .doOnError(this::onLoadError)
+                .doOnSuccess(this::onBattleSucceed)
+                .doOnError(this::onBattleError)
                 .doFinally(this::onFinally)
                 .subscribe();
 
@@ -44,11 +44,16 @@ public class BattlePresenter implements BattleContract.Presenter {
         mView.hideLoading();
     }
 
-    private void onLoadError(Throwable throwable) {
+    private void onBattleError(Throwable throwable) {
         // ERROR
     }
 
-    private void onLoadSucceed(Battle.Results results) {
+    private void onBattleSucceed(Battle.Results results) {
+        if(results.isAllDestroyed()) {
+            mView.showAllDestroyedFragment();
+            return;
+        }
+
         mView.showBattleWinnerFragment(results);
     }
 }

@@ -18,4 +18,5 @@
     <string name="firepower_text">Firepower: %d</string>
     <string name="skill_text">Skill: %d</string>
     <string name="overall_text">Overall: %d</string>
+    <string name="all_transformers_destroyed">All transformers were destroyed! :(</string>
 </resources>
