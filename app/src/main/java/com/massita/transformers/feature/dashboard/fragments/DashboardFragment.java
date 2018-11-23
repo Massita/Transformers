@@ -1,6 +1,7 @@
 package com.massita.transformers.feature.dashboard.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,8 @@ import com.massita.transformers.api.RestClient;
 import com.massita.transformers.api.model.Transformer;
 import com.massita.transformers.feature.battle.BattleActivity;
 import com.massita.transformers.feature.dashboard.adapters.TransformersAdapter;
+import com.massita.transformers.feature.transformers.TransformersActivity;
+import com.massita.transformers.feature.transformers.fragments.NewTransformerFragment;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
 import java.util.ArrayList;
@@ -28,10 +31,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static android.app.Activity.RESULT_OK;
 
 public class DashboardFragment extends Fragment implements DashboardFragmentContract.View {
 
     private DashboardFragmentContract.Presenter mPresenter;
+
+    public static final int ADD_NEW_TRANFORMER_CODE = 1;
 
     @BindView(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
@@ -116,4 +124,28 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
         startActivity(BattleActivity.getBattleActivityIntent(getContext(), list));
     }
 
+    @Override
+    public void startAddNewTransformerActivity() {
+        startActivityForResult(new Intent(getContext(), TransformersActivity.class), ADD_NEW_TRANFORMER_CODE);
+    }
+
+    @Override
+    public void notifyListUpdated() {
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @OnClick(R.id.fab)
+    protected void onAddNewTransformerClick() {
+        mPresenter.onAddNewTransformer();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == ADD_NEW_TRANFORMER_CODE && resultCode == RESULT_OK) {
+            Transformer transformer = (Transformer) data.getSerializableExtra(NewTransformerFragment.NEW_TRANSFORMER);
+            mPresenter.onNewTransformerAdded(transformer);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }

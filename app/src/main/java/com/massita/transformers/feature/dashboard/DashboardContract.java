@@ -6,15 +6,11 @@ public interface DashboardContract {
 
         void startDashboardFragment();
 
-        void startAddNewTransformerActivity();
-
     }
 
     interface Presenter {
 
         void start();
-
-        void onAddNewTransformer();
 
     }
 

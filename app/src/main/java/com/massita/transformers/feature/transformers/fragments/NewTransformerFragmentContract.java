@@ -1,5 +1,7 @@
 package com.massita.transformers.feature.transformers.fragments;
 
+import com.massita.transformers.api.model.Transformer;
+
 public interface NewTransformerFragmentContract {
 
     interface View {
@@ -62,7 +64,7 @@ public interface NewTransformerFragmentContract {
 
         void setSkillValue(int value);
 
-        void finishWithSuccess();
+        void finishWithSuccess(Transformer transformer);
 
     }
 

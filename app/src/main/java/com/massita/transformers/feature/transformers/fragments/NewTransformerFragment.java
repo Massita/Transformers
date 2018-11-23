@@ -1,6 +1,8 @@
 package com.massita.transformers.feature.transformers.fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,6 +29,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NewTransformerFragment extends Fragment implements NewTransformerFragmentContract.View {
+
+    public static final String NEW_TRANSFORMER = "NEW_TRANSFORMER";
 
     private NewTransformerFragmentContract.Presenter mPresenter;
 
@@ -423,8 +427,10 @@ public class NewTransformerFragment extends Fragment implements NewTransformerFr
     }
 
     @Override
-    public void finishWithSuccess() {
-        if(isAdded())
-            getActivity().finish();
+    public void finishWithSuccess(Transformer transformer) {
+        Intent result = new Intent();
+        result.putExtra(NEW_TRANSFORMER, transformer);
+        getActivity().setResult(Activity.RESULT_OK, result);
+        getActivity().finish();
     }
 }

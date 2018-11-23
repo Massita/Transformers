@@ -43,14 +43,4 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
 
     }
 
-    @Override
-    public void startAddNewTransformerActivity() {
-        startActivity(new Intent(this, TransformersActivity.class));
-    }
-
-    @OnClick(R.id.fab)
-    protected void onAddNewTransformerClick() {
-        mPresenter.onAddNewTransformer();
-    }
-
 }

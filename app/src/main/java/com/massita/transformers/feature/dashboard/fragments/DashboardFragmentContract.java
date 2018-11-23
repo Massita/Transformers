@@ -13,11 +13,15 @@ public interface DashboardFragmentContract {
 
         void hideLoading();
 
+        void notifyListUpdated();
+
         void prepareRecyclerView();
 
         void showList(List<Transformer> transformersList);
 
         void startFightActivity(ArrayList<Transformer> list);
+
+        void startAddNewTransformerActivity();
 
     }
 
@@ -30,6 +34,10 @@ public interface DashboardFragmentContract {
         void onDestroy();
 
         void onFight();
+
+        void onAddNewTransformer();
+
+        void onNewTransformerAdded(Transformer transformer);
 
     }
 

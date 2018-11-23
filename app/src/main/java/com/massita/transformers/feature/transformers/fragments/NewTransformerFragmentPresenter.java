@@ -99,7 +99,7 @@ public class NewTransformerFragmentPresenter implements NewTransformerFragmentCo
     }
 
     private void onLoadSucceed(Response<Transformer> transformerResponse) {
-        mView.finishWithSuccess();
+        mView.finishWithSuccess(transformerResponse.body());
     }
 
     @Override

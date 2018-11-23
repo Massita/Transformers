@@ -76,4 +76,15 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     public void onFight() {
         mView.startFightActivity(mTransformers);
     }
+
+    @Override
+    public void onAddNewTransformer() {
+        mView.startAddNewTransformerActivity();
+    }
+
+    @Override
+    public void onNewTransformerAdded(Transformer transformer) {
+        mTransformers.add(transformer);
+        mView.notifyListUpdated();
+    }
 }
