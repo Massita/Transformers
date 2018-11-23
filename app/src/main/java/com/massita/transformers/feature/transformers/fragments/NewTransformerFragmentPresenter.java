@@ -35,6 +35,7 @@ public class NewTransformerFragmentPresenter implements NewTransformerFragmentCo
     }
     
     private void setupListeners() {
+        mView.setupTeamListener();
         mView.setupCourageListener();
         mView.setupEnduranceListener();
         mView.setupFirepowerListener();
@@ -48,6 +49,9 @@ public class NewTransformerFragmentPresenter implements NewTransformerFragmentCo
     
     private void setupValues() {
         mView.setName(mTransformer.getName());
+        // Team
+        mView.setTeam(mTransformer.isAutobots());
+        mView.setTeamText(mTransformer.isAutobots());
         // Strength
         mView.setStrengthText(mTransformer.getStrength());
         mView.setStrengthValue(mTransformer.getStrength()-1);
@@ -105,7 +109,8 @@ public class NewTransformerFragmentPresenter implements NewTransformerFragmentCo
 
     @Override
     public void updateTeam(boolean isAutobots) {
-
+        mTransformer.setIsAutobots(isAutobots);
+        mView.setTeamText(isAutobots);
     }
 
     @Override

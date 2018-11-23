@@ -6,7 +6,10 @@ public class Transformer {
 
     private static final int DEFAULT_VALUE = 5;
 
-    private static final String DEFAULT_TEAM = "A";
+    private static final String TEAM_AUTOBOTS = "A";
+    private static final String TEAM_DECEPTICON = "D";
+
+    private static final String DEFAULT_TEAM = TEAM_AUTOBOTS;
 
     @SerializedName("id")
     private String id;
@@ -150,5 +153,17 @@ public class Transformer {
 
     public void setTeamIcon(String teamIcon) {
         this.teamIcon = teamIcon;
+    }
+
+    public void setIsAutobots(boolean isAutobots) {
+        if(isAutobots) {
+            setTeam(TEAM_AUTOBOTS);
+        } else {
+            setTeam(TEAM_DECEPTICON);
+        }
+    }
+
+    public boolean isAutobots() {
+        return TEAM_AUTOBOTS.equals(getTeam());
     }
 }

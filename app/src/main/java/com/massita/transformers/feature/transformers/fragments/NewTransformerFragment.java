@@ -11,8 +11,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.massita.transformers.R;
@@ -30,6 +32,9 @@ public class NewTransformerFragment extends Fragment implements NewTransformerFr
 
     @BindView(R.id.name_input_text)
     EditText nameEditText;
+
+    @BindView(R.id.team_switch)
+    Switch teamSwitch;
 
     @BindView(R.id.strength_text_view)
     TextView strengthTextView;
@@ -132,6 +137,13 @@ public class NewTransformerFragment extends Fragment implements NewTransformerFr
             public void afterTextChanged(Editable s) {
 
             }
+        });
+    }
+
+    @Override
+    public void setupTeamListener() {
+        teamSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            mPresenter.updateTeam(isChecked);
         });
     }
 
@@ -318,7 +330,16 @@ public class NewTransformerFragment extends Fragment implements NewTransformerFr
 
     @Override
     public void setTeam(boolean isAutobots) {
+        teamSwitch.setChecked(isAutobots);
+    }
 
+    @Override
+    public void setTeamText(boolean isAutobots) {
+        if(isAutobots) {
+            teamSwitch.setText(R.string.autobot);
+        } else {
+            teamSwitch.setText(R.string.decepticon);
+        }
     }
 
     @Override

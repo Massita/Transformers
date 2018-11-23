@@ -6,6 +6,8 @@ public interface NewTransformerFragmentContract {
 
         void setupNameListener();
 
+        void setupTeamListener();
+
         void setupStrengthListener();
 
         void setupIntelligenceListener();
@@ -25,6 +27,8 @@ public interface NewTransformerFragmentContract {
         void setName(String name);
 
         void setTeam(boolean isAutobots);
+
+        void setTeamText(boolean isAutobots);
 
         void setStrengthText(int value);
 
