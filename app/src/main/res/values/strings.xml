@@ -5,6 +5,8 @@
     <string name="autobot">Autobots</string>
     <string name="decepticon">Decepticon</string>
 
+    <string name="action_fight">Fight!</string>
+
     <!-- Attr names -->
     <string name="strength_text">Strength: %d</string>
     <string name="intelligence_text">Intelligence: %d</string>
