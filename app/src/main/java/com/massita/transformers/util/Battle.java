@@ -1,7 +1,9 @@
 package com.massita.transformers.util;
 
 import com.massita.transformers.api.model.Transformer;
+import com.massita.transformers.api.model.Transformers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +47,36 @@ public class Battle {
             results = duel(results, autobot, decepticon);
         }
 
+        results = getWinnerTeam(results);
+
         return Single.just(results);
+    }
+
+    private Results getWinnerTeam(Results results) {
+        if(results.getDecepticonScore() == results.getAutobotScore()) {
+            results.setDraw(true);
+            return results;
+        }
+
+        if(results.getAutobotScore() > results.getDecepticonScore()) {
+            results.setWinningTeam(autobots);
+            results.setSurvivors(getSurvivors(results.numberOfFights, decepticons));
+
+            return results;
+        }
+
+        results.setWinningTeam(decepticons);
+        results.setSurvivors(getSurvivors(results.numberOfFights, autobots));
+
+        return results;
+    }
+
+    private List<Transformer> getSurvivors(int numberOfFights, List<Transformer> losingTeam) {
+        if(numberOfFights >= losingTeam.size()) {
+            return null;
+        }
+
+        return losingTeam.subList(numberOfFights, losingTeam.size());
     }
 
     private Results duel(Results results, Transformer autobot, Transformer decepticon) {
@@ -104,7 +135,7 @@ public class Battle {
         return Math.min(autobots.size(), decepticons.size());
     }
 
-    public class Results {
+    public class Results implements Serializable {
         private int numberOfFights;
         private boolean isDraw;
         private boolean allDestroyed;

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.massita.transformers.R;
 import com.massita.transformers.api.model.Transformer;
 import com.massita.transformers.feature.battle.fragments.AllDestroyedFragment;
+import com.massita.transformers.feature.battle.fragments.WinnerFragment;
 import com.massita.transformers.util.Battle;
 
 import java.util.ArrayList;
@@ -62,7 +63,11 @@ public class BattleActivity extends AppCompatActivity implements BattleContract.
 
     @Override
     public void showBattleWinnerFragment(Battle.Results results) {
-        Toast.makeText(this, "Score: " + results.getAutobotScore() + " x " + results.getDecepticonScore(), Toast.LENGTH_LONG).show();
+        Fragment fragment = WinnerFragment.newInstance(results);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override

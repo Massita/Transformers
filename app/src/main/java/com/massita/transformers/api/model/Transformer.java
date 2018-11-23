@@ -11,6 +11,9 @@ public class Transformer implements Serializable {
     private static final String OPTIMUS_PRIME = "Optimus Prime";
     private static final String PREDAKING = "Predaking";
 
+    public static final String AUTOBOTS = "Autobots";
+    public static final String DECEPTICONS = "Decepticons";
+
     public static final String TEAM_AUTOBOTS = "A";
     public static final String TEAM_DECEPTICON = "D";
 
