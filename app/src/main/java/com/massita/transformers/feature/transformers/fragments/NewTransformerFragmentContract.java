@@ -1,4 +1,93 @@
 package com.massita.transformers.feature.transformers.fragments;
 
-public class NewTransformerFragmentContract {
+public interface NewTransformerFragmentContract {
+
+    interface View {
+
+        void setupNameListener();
+
+        void setupStrengthListener();
+
+        void setupIntelligenceListener();
+
+        void setupSpeedListener();
+
+        void setupEnduranceListener();
+
+        void setupRankListener();
+
+        void setupCourageListener();
+
+        void setupFirepowerListener();
+
+        void setupSkillListener();
+
+        void setName(String name);
+
+        void setTeam(boolean isAutobots);
+
+        void setStrengthText(int value);
+
+        void setStrengthValue(int value);
+
+        void setIntelligenceText(int value);
+
+        void setIntelligenceValue(int value);
+
+        void setSpeedText(int value);
+
+        void setSpeedValue(int value);
+
+        void setEnduranceText(int value);
+
+        void setEnduranceValue(int value);
+
+        void setRankText(int value);
+
+        void setRankValue(int value);
+
+        void setCourageText(int value);
+
+        void setCourageValue(int value);
+
+        void setFirepowerText(int value);
+
+        void setFirepowerValue(int value);
+
+        void setSkillText(int value);
+
+        void setSkillValue(int value);
+
+        void finishWithSuccess();
+
+    }
+
+    interface Presenter {
+
+        void start();
+
+        void saveTransformer();
+
+        void updateName(String name);
+
+        void updateTeam(boolean isAutobots);
+
+        void updateStrength(int value);
+
+        void updateIntelligence(int value);
+
+        void updateSpeed(int value);
+
+        void updateEndurance(int value);
+
+        void updateRank(int value);
+
+        void updateCourage(int value);
+
+        void updateFirepower(int value);
+
+        void updateSkill(int value);
+
+    }
+
 }

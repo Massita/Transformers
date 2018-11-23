@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Transformers</string>
     <string name="image_view_team_description">Team\'s avatar</string>
+
+    <!-- Attr names -->
+    <string name="strength_text">Strength: %d</string>
+    <string name="intelligence_text">Intelligence: %d</string>
+    <string name="speed_text">Speed: %d</string>
+    <string name="endurance_text">Endurance: %d</string>
+    <string name="rank_text">Rank: %d</string>
+    <string name="courage_text">Courage: %d</string>
+    <string name="firepower_text">Firepower: %d</string>
+    <string name="skill_text">Skill: %d</string>
 </resources>

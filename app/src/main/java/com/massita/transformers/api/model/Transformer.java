@@ -4,8 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Transformer {
 
+    private static final int DEFAULT_VALUE = 5;
+
+    private static final String DEFAULT_TEAM = "A";
+
     @SerializedName("id")
-    private Integer id;
+    private String id;
 
     @SerializedName("name")
     private String name;
@@ -40,11 +44,23 @@ public class Transformer {
     @SerializedName("team_icon")
     private String teamIcon;
 
-    public int getId() {
+    public Transformer() {
+        this.team = DEFAULT_TEAM;
+        this.strength = DEFAULT_VALUE;
+        this.intelligence = DEFAULT_VALUE;
+        this.speed = DEFAULT_VALUE;
+        this.endurance = DEFAULT_VALUE;
+        this.rank = DEFAULT_VALUE;
+        this.courage = DEFAULT_VALUE;
+        this.firepower = DEFAULT_VALUE;
+        this.skill = DEFAULT_VALUE;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
