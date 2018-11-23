@@ -23,6 +23,8 @@ public interface DashboardFragmentContract {
 
         void startAddNewTransformerActivity();
 
+        void startEditTransformerActivity(Transformer transformer);
+
     }
 
     interface Presenter {
@@ -38,6 +40,8 @@ public interface DashboardFragmentContract {
         void onAddNewTransformer();
 
         void onTransformerEdit(Transformer transformer, int action);
+
+        void onTransformerSelected(Transformer transformer);
 
     }
 

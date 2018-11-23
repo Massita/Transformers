@@ -99,4 +99,9 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
             default:
         }
     }
+
+    @Override
+    public void onTransformerSelected(Transformer transformer) {
+        mView.startEditTransformerActivity(transformer);
+    }
 }

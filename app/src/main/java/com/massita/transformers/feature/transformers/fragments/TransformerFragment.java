@@ -114,6 +114,7 @@ public class TransformerFragment extends Fragment implements TransformerFragment
         View view = inflater.inflate(R.layout.fragment_new_transformer, container, false);
         ButterKnife.bind(this, view);
 
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -133,7 +134,7 @@ public class TransformerFragment extends Fragment implements TransformerFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_delete:
-
+                mPresenter.deleteTransformer();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

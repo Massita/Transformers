@@ -34,11 +34,11 @@ import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
-public class DashboardFragment extends Fragment implements DashboardFragmentContract.View {
+public class DashboardFragment extends Fragment implements DashboardFragmentContract.View, TransformersAdapter.OnItemClickListener {
 
     private DashboardFragmentContract.Presenter mPresenter;
 
-    public static final int ADD_NEW_TRANFORMER_CODE = 1;
+    public static final int TRANFORMER_REQUEST_CODE = 1;
 
     @BindView(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
@@ -115,7 +115,7 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
 
     @Override
     public void showList(List<Transformer> transformersList) {
-        mRecyclerView.setAdapter(new TransformersAdapter(transformersList));
+        mRecyclerView.setAdapter(new TransformersAdapter(transformersList, this));
     }
 
     @Override
@@ -125,7 +125,12 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
 
     @Override
     public void startAddNewTransformerActivity() {
-        startActivityForResult(new Intent(getContext(), TransformersActivity.class), ADD_NEW_TRANFORMER_CODE);
+        startActivityForResult(new Intent(getContext(), TransformersActivity.class), TRANFORMER_REQUEST_CODE);
+    }
+
+    @Override
+    public void startEditTransformerActivity(Transformer transformer) {
+        startActivityForResult(TransformersActivity.getTransformerActivityIntent(getContext(), transformer), TRANFORMER_REQUEST_CODE);
     }
 
     @Override
@@ -140,11 +145,16 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == ADD_NEW_TRANFORMER_CODE && resultCode == RESULT_OK) {
+        if(requestCode == TRANFORMER_REQUEST_CODE && resultCode == RESULT_OK) {
             Transformer transformer = (Transformer) data.getSerializableExtra(TransformerFragment.TRANSFORMER);
             mPresenter.onTransformerEdit(transformer, data.getIntExtra(TransformerFragment.TRANSFORMER_ACTION, -1));
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    public void onItemClick(Transformer transformer) {
+        mPresenter.onTransformerSelected(transformer);
     }
 }

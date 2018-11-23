@@ -107,6 +107,8 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                     .doOnSuccess(this::onDeleteSucceed)
                     .doOnError(this::onDeleteError)
                     .subscribe();
+
+            mCompositeDisposable.add(disposable);
         } else {
 
         }

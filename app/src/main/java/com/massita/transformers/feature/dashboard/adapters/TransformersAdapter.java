@@ -19,10 +19,16 @@ import butterknife.ButterKnife;
 
 public class TransformersAdapter extends RecyclerView.Adapter<TransformersAdapter.ViewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(Transformer transformer);
+    }
+
+    private OnItemClickListener mItemClickListener;
     private List<Transformer> transformers;
 
-    public TransformersAdapter(List<Transformer> transformers) {
+    public TransformersAdapter(List<Transformer> transformers, OnItemClickListener onItemClickListener) {
         this.transformers = transformers;
+        this.mItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -35,7 +41,7 @@ public class TransformersAdapter extends RecyclerView.Adapter<TransformersAdapte
     @Override
     public void onBindViewHolder(@NonNull TransformersAdapter.ViewHolder holder, int position) {
         Transformer transformer = transformers.get(position);
-        holder.bind(transformer);
+        holder.bind(transformer, mItemClickListener);
     }
 
     @Override
@@ -58,12 +64,13 @@ public class TransformersAdapter extends RecyclerView.Adapter<TransformersAdapte
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Transformer transformer) {
+        public void bind(Transformer transformer, final OnItemClickListener itemClickListener) {
             Picasso.get()
                     .load(transformer.getTeamIcon())
                     .into(teamImage);
             transformerName.setText(transformer.getName());
             transformerOverall.setText(itemView.getContext().getString(R.string.overall_text, transformer.getOverall()));
+            itemView.setOnClickListener(v -> itemClickListener.onItemClick(transformer));
         }
     }
 }
