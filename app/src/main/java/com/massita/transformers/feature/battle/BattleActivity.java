@@ -52,7 +52,7 @@ public class BattleActivity extends AppCompatActivity implements BattleContract.
 
     @Override
     public void showBattleDrawFragment() {
-//        Fragment fragment = NewTransformerFragment.newInstance();
+//        Fragment fragment = TransformerFragment.newInstance();
 //
 //        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //        fragmentTransaction.replace(R.id.fragment_container, fragment);

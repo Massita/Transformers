@@ -2,7 +2,7 @@ package com.massita.transformers.feature.transformers.fragments;
 
 import com.massita.transformers.api.model.Transformer;
 
-public interface NewTransformerFragmentContract {
+public interface TransformerFragmentContract {
 
     interface View {
 

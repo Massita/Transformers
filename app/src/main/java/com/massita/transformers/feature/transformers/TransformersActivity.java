@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.massita.transformers.R;
-import com.massita.transformers.feature.transformers.fragments.NewTransformerFragment;
+import com.massita.transformers.feature.transformers.fragments.TransformerFragment;
 
 public class TransformersActivity extends AppCompatActivity implements TransformerContract.View {
 
@@ -24,7 +24,7 @@ public class TransformersActivity extends AppCompatActivity implements Transform
 
     @Override
     public void showNewTransformerFragment() {
-        Fragment fragment = NewTransformerFragment.newInstance();
+        Fragment fragment = TransformerFragment.newInstance();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);

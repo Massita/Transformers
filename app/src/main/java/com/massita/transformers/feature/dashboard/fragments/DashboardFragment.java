@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.massita.transformers.R;
 import com.massita.transformers.api.RestClient;
@@ -23,7 +22,7 @@ import com.massita.transformers.api.model.Transformer;
 import com.massita.transformers.feature.battle.BattleActivity;
 import com.massita.transformers.feature.dashboard.adapters.TransformersAdapter;
 import com.massita.transformers.feature.transformers.TransformersActivity;
-import com.massita.transformers.feature.transformers.fragments.NewTransformerFragment;
+import com.massita.transformers.feature.transformers.fragments.TransformerFragment;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
 import java.util.ArrayList;
@@ -142,7 +141,7 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == ADD_NEW_TRANFORMER_CODE && resultCode == RESULT_OK) {
-            Transformer transformer = (Transformer) data.getSerializableExtra(NewTransformerFragment.NEW_TRANSFORMER);
+            Transformer transformer = (Transformer) data.getSerializableExtra(TransformerFragment.NEW_TRANSFORMER);
             mPresenter.onNewTransformerAdded(transformer);
         } else {
             super.onActivityResult(requestCode, resultCode, data);

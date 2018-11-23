@@ -11,16 +11,16 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
 
-public class NewTransformerFragmentPresenter implements NewTransformerFragmentContract.Presenter {
+public class TransformerFragmentPresenter implements TransformerFragmentContract.Presenter {
 
-    private NewTransformerFragmentContract.View mView;
+    private TransformerFragmentContract.View mView;
     private CompositeDisposable mCompositeDisposable;
     private TransformersService mService;
     private SharedPreferencesRepository mSharedPreferencesRepository;
     private String mToken;
     private Transformer mTransformer;
 
-    public NewTransformerFragmentPresenter(NewTransformerFragmentContract.View view, TransformersService service, SharedPreferencesRepository sharedPreferencesRepository, Transformer transformer) {
+    public TransformerFragmentPresenter(TransformerFragmentContract.View view, TransformersService service, SharedPreferencesRepository sharedPreferencesRepository, Transformer transformer) {
         this.mView = view;
         mCompositeDisposable = new CompositeDisposable();
         mService = service;

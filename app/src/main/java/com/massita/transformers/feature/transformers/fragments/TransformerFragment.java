@@ -13,7 +13,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -28,11 +27,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NewTransformerFragment extends Fragment implements NewTransformerFragmentContract.View {
+public class TransformerFragment extends Fragment implements TransformerFragmentContract.View {
 
     public static final String NEW_TRANSFORMER = "NEW_TRANSFORMER";
 
-    private NewTransformerFragmentContract.Presenter mPresenter;
+    private TransformerFragmentContract.Presenter mPresenter;
 
     @BindView(R.id.name_input_text)
     EditText nameEditText;
@@ -89,8 +88,8 @@ public class NewTransformerFragment extends Fragment implements NewTransformerFr
     SeekBar skillSeekBar;
 
 
-    public static NewTransformerFragment newInstance() {
-        return new NewTransformerFragment();
+    public static TransformerFragment newInstance() {
+        return new TransformerFragment();
     }
 
     @Nullable
@@ -116,7 +115,7 @@ public class NewTransformerFragment extends Fragment implements NewTransformerFr
         SharedPreferences sharedPreferences = context.getSharedPreferences(SharedPreferencesRepository.SHARED_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferencesRepository sharedPreferencesRepository = new SharedPreferencesRepository(sharedPreferences);
 
-        mPresenter = new NewTransformerFragmentPresenter(this, RestClient.getTransformersService(), sharedPreferencesRepository, new Transformer());
+        mPresenter = new TransformerFragmentPresenter(this, RestClient.getTransformersService(), sharedPreferencesRepository, new Transformer());
     }
 
     @OnClick(R.id.button_save)
