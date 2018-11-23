@@ -13,7 +13,7 @@ public class Battle {
     private List<Transformer> decepticons = new ArrayList<>();
 
     public Single<Battle> prepare(List<Transformer> transformers) {
-        Collections.sort(transformers, (o1, o2) -> o1.getRank() - o2.getRank());
+        Collections.sort(transformers, (o1, o2) -> o2.getRank() - o1.getRank());
 
         for (Transformer t: transformers) {
             if(t.isAutobots()) {
