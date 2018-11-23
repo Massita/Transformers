@@ -6,8 +6,11 @@ public class Transformer {
 
     private static final int DEFAULT_VALUE = 5;
 
-    private static final String TEAM_AUTOBOTS = "A";
-    private static final String TEAM_DECEPTICON = "D";
+    private static final String OPTIMUS_PRIME = "Optimus Prime";
+    private static final String PREDAKING = "Predaking";
+
+    public static final String TEAM_AUTOBOTS = "A";
+    public static final String TEAM_DECEPTICON = "D";
 
     private static final String DEFAULT_TEAM = TEAM_AUTOBOTS;
 
@@ -169,5 +172,9 @@ public class Transformer {
 
     public int getOverall() {
         return strength + intelligence + speed + endurance + firepower;
+    }
+
+    public boolean isOverpower() {
+        return OPTIMUS_PRIME.equalsIgnoreCase(name) || PREDAKING.equalsIgnoreCase(name);
     }
 }
