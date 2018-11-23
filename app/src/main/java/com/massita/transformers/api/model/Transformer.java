@@ -179,4 +179,15 @@ public class Transformer implements Serializable {
     public boolean isOverpower() {
         return OPTIMUS_PRIME.equalsIgnoreCase(name) || PREDAKING.equalsIgnoreCase(name);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Transformer)) {
+            return false;
+        }
+
+        Transformer t = (Transformer) obj;
+        return this.getId() != null && t.getId() != null && this.getId().equals(t.getId());
+
+    }
 }

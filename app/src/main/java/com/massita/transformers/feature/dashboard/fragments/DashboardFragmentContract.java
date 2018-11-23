@@ -37,7 +37,7 @@ public interface DashboardFragmentContract {
 
         void onAddNewTransformer();
 
-        void onNewTransformerAdded(Transformer transformer);
+        void onTransformerEdit(Transformer transformer, int action);
 
     }
 

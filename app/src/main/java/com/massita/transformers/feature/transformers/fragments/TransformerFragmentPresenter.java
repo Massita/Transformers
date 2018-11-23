@@ -87,19 +87,45 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                 } )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSuccess(this::onLoadSucceed)
-                .doOnError(this::onLoadError)
+                .doOnSuccess(this::onNewSucceed)
+                .doOnError(this::onNewError)
                 .subscribe();
 
         mCompositeDisposable.add(disposable);
     }
 
-    private void onLoadError(Throwable throwable) {
+    @Override
+    public void deleteTransformer() {
+        if(mTransformer.getId() != null) {
+            Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
+                    .flatMap((t) -> {
+                        mSharedPreferencesRepository.setToken(t);
+                        return mService.deleteTransformer("Bearer " + t, mTransformer.getId());
+                    } )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSuccess(this::onDeleteSucceed)
+                    .doOnError(this::onDeleteError)
+                    .subscribe();
+        } else {
+
+        }
+    }
+
+    private void onDeleteError(Throwable throwable) {
         // TODO
     }
 
-    private void onLoadSucceed(Response<Transformer> transformerResponse) {
-        mView.finishWithSuccess(transformerResponse.body());
+    private void onDeleteSucceed(Response<Void> voidResponse) {
+        mView.finishWithSuccess(mTransformer, TransformerFragment.ACTION_DELETE);
+    }
+
+    private void onNewError(Throwable throwable) {
+        // TODO
+    }
+
+    private void onNewSucceed(Response<Transformer> transformerResponse) {
+        mView.finishWithSuccess(transformerResponse.body(), TransformerFragment.ACTION_NEW);
     }
 
     @Override

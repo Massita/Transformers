@@ -141,8 +141,8 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == ADD_NEW_TRANFORMER_CODE && resultCode == RESULT_OK) {
-            Transformer transformer = (Transformer) data.getSerializableExtra(TransformerFragment.NEW_TRANSFORMER);
-            mPresenter.onNewTransformerAdded(transformer);
+            Transformer transformer = (Transformer) data.getSerializableExtra(TransformerFragment.TRANSFORMER);
+            mPresenter.onTransformerEdit(transformer, data.getIntExtra(TransformerFragment.TRANSFORMER_ACTION, -1));
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }

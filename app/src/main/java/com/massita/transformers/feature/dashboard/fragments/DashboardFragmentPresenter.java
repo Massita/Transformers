@@ -4,6 +4,7 @@ import com.massita.transformers.api.RestClient;
 import com.massita.transformers.api.TransformersService;
 import com.massita.transformers.api.model.Transformer;
 import com.massita.transformers.api.model.Transformers;
+import com.massita.transformers.feature.transformers.fragments.TransformerFragment;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
 import java.util.ArrayList;
@@ -83,8 +84,19 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     }
 
     @Override
-    public void onNewTransformerAdded(Transformer transformer) {
-        mTransformers.add(transformer);
-        mView.notifyListUpdated();
+    public void onTransformerEdit(Transformer transformer, int action) {
+        switch (action) {
+            case TransformerFragment.ACTION_NEW:
+                mTransformers.add(transformer);
+                mView.notifyListUpdated();
+                break;
+            case TransformerFragment.ACTION_EDIT:
+                break;
+            case TransformerFragment.ACTION_DELETE:
+                mTransformers.remove(transformer);
+                mView.notifyListUpdated();
+                break;
+            default:
+        }
     }
 }

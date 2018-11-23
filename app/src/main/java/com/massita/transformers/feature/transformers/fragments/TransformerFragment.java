@@ -11,6 +11,9 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -29,7 +32,12 @@ import butterknife.OnClick;
 
 public class TransformerFragment extends Fragment implements TransformerFragmentContract.View {
 
-    public static final String NEW_TRANSFORMER = "NEW_TRANSFORMER";
+    public static final String TRANSFORMER = "TRANSFORMER";
+    public static final String TRANSFORMER_ACTION = "TRANSFORMER_ACTION";
+
+    public static final int ACTION_NEW = 0;
+    public static final int ACTION_EDIT = 1;
+    public static final int ACTION_DELETE = 2;
 
     private TransformerFragmentContract.Presenter mPresenter;
 
@@ -92,6 +100,14 @@ public class TransformerFragment extends Fragment implements TransformerFragment
         return new TransformerFragment();
     }
 
+    public static TransformerFragment newInstance(Transformer transformer) {
+        TransformerFragment fragment = new TransformerFragment();
+        Bundle b = new Bundle();
+        b.putSerializable(TRANSFORMER, transformer);
+        fragment.setArguments(b);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -109,13 +125,31 @@ public class TransformerFragment extends Fragment implements TransformerFragment
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_transformer, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_delete:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(SharedPreferencesRepository.SHARED_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferencesRepository sharedPreferencesRepository = new SharedPreferencesRepository(sharedPreferences);
 
-        mPresenter = new TransformerFragmentPresenter(this, RestClient.getTransformersService(), sharedPreferencesRepository, new Transformer());
+
+        Transformer transformer = getArguments() != null ? (Transformer) getArguments().getSerializable(TRANSFORMER) : new Transformer();
+        mPresenter = new TransformerFragmentPresenter(this, RestClient.getTransformersService(), sharedPreferencesRepository, transformer);
     }
 
     @OnClick(R.id.button_save)
@@ -426,9 +460,10 @@ public class TransformerFragment extends Fragment implements TransformerFragment
     }
 
     @Override
-    public void finishWithSuccess(Transformer transformer) {
+    public void finishWithSuccess(Transformer transformer, int action) {
         Intent result = new Intent();
-        result.putExtra(NEW_TRANSFORMER, transformer);
+        result.putExtra(TRANSFORMER, transformer);
+        result.putExtra(TRANSFORMER_ACTION, action);
         getActivity().setResult(Activity.RESULT_OK, result);
         getActivity().finish();
     }

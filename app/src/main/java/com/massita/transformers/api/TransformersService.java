@@ -28,6 +28,6 @@ public interface TransformersService {
     Single<Response<Transformer>> updateTransformer(@Header("Authorization") String authorization, @Body Transformer transformer);
 
     @DELETE("transformers/{id}")
-    Single<Response<Void>> deleteTransformer(@Header("Authorization") String authorization, @Path("id") int transformerId);
+    Single<Response<Void>> deleteTransformer(@Header("Authorization") String authorization, @Path("id") String transformerId);
 
 }

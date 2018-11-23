@@ -64,7 +64,7 @@ public interface TransformerFragmentContract {
 
         void setSkillValue(int value);
 
-        void finishWithSuccess(Transformer transformer);
+        void finishWithSuccess(Transformer transformer, int action);
 
     }
 
@@ -73,6 +73,8 @@ public interface TransformerFragmentContract {
         void start();
 
         void saveTransformer();
+
+        void deleteTransformer();
 
         void updateName(String name);
 
