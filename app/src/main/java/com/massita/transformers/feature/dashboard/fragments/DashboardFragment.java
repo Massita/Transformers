@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -16,9 +19,11 @@ import android.widget.Toast;
 import com.massita.transformers.R;
 import com.massita.transformers.api.RestClient;
 import com.massita.transformers.api.model.Transformer;
+import com.massita.transformers.feature.battle.BattleActivity;
 import com.massita.transformers.feature.dashboard.adapters.TransformersAdapter;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,9 +44,26 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        setHasOptionsMenu(true);
         ButterKnife.bind(this, view);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_dashboard, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_fight:
+                mPresenter.onFight();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -87,6 +109,11 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
     @Override
     public void showList(List<Transformer> transformersList) {
         mRecyclerView.setAdapter(new TransformersAdapter(transformersList));
+    }
+
+    @Override
+    public void startFightActivity(ArrayList<Transformer> list) {
+        startActivity(BattleActivity.getBattleActivityIntent(getContext(), list));
     }
 
 }

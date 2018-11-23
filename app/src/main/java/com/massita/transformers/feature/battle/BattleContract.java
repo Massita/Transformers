@@ -1,4 +1,27 @@
 package com.massita.transformers.feature.battle;
 
-public class BattleContract {
+import com.massita.transformers.util.Battle;
+
+public interface BattleContract {
+
+    interface View {
+
+        void showLoading();
+
+        void hideLoading();
+
+        void showBattleDrawFragment();
+
+        void showBattleWinnerFragment(Battle.Results results);
+
+        void showAllDestroyedFragment();
+
+    }
+
+    interface Presenter {
+
+        void computeBattle();
+
+    }
+
 }

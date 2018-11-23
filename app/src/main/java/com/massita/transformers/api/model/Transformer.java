@@ -2,7 +2,9 @@ package com.massita.transformers.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Transformer {
+import java.io.Serializable;
+
+public class Transformer implements Serializable {
 
     private static final int DEFAULT_VALUE = 5;
 

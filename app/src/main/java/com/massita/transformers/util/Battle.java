@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.Single;
+
 public class Battle {
     private List<Transformer> autobots = new ArrayList<>();
     private List<Transformer> decepticons = new ArrayList<>();
 
-    public void prepare(List<Transformer> transformers) {
+    public Single<Battle> prepare(List<Transformer> transformers) {
         Collections.sort(transformers, (o1, o2) -> o1.getRank() - o2.getRank());
 
         for (Transformer t: transformers) {
@@ -20,9 +22,11 @@ public class Battle {
                 decepticons.add(t);
             }
         }
+
+        return Single.just(this);
     }
 
-    public Results fight() {
+    public Single<Results> fight() {
         Results results = new Results();
 
         results.numberOfFights = getNumberOfFights();
@@ -35,13 +39,13 @@ public class Battle {
                 results.setDraw(true);
                 results.setAllDestroyed(true);
 
-                return results;
+                return Single.just(results);
             }
 
             results = duel(results, autobot, decepticon);
         }
 
-        return results;
+        return Single.just(results);
     }
 
     private Results duel(Results results, Transformer autobot, Transformer decepticon) {

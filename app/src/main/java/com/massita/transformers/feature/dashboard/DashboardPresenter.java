@@ -14,11 +14,6 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     }
 
     @Override
-    public void onFight() {
-        mView.startFightActivity();
-    }
-
-    @Override
     public void onAddNewTransformer() {
         mView.startAddNewTransformerActivity();
     }

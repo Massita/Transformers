@@ -6,6 +6,7 @@ import com.massita.transformers.api.model.Transformer;
 import com.massita.transformers.api.model.Transformers;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Scheduler;
@@ -22,6 +23,7 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     private CompositeDisposable mCompositeDisposable;
     private TransformersService mService;
     private SharedPreferencesRepository mSharedPreferencesRepository;
+    private ArrayList<Transformer> mTransformers;
     private String mToken;
 
     public DashboardFragmentPresenter(DashboardFragmentContract.View view, TransformersService service, SharedPreferencesRepository sharedPreferencesRepository) {
@@ -59,7 +61,8 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
 
     private void onLoadSucceed(Response<Transformers> listResponse) {
         if(listResponse.isSuccessful() && listResponse.body() != null) {
-            mView.showList(listResponse.body().getTransformers());
+            mTransformers = listResponse.body().getTransformers();
+            mView.showList(mTransformers);
         }
     }
 
@@ -67,5 +70,10 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     public void onDestroy() {
         mView = null;
         mCompositeDisposable.dispose();
+    }
+
+    @Override
+    public void onFight() {
+        mView.startFightActivity(mTransformers);
     }
 }

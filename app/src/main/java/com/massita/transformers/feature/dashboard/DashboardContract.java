@@ -8,15 +8,11 @@ public interface DashboardContract {
 
         void startAddNewTransformerActivity();
 
-        void startFightActivity();
-
     }
 
     interface Presenter {
 
         void start();
-
-        void onFight();
 
         void onAddNewTransformer();
 
