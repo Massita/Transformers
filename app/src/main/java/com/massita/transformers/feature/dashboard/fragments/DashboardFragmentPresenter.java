@@ -91,6 +91,9 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
                 mView.notifyListUpdated();
                 break;
             case TransformerFragment.ACTION_EDIT:
+                int index = mTransformers.indexOf(transformer);
+                mTransformers.set(index, transformer);
+                mView.notifyListUpdated();
                 break;
             case TransformerFragment.ACTION_DELETE:
                 mTransformers.remove(transformer);

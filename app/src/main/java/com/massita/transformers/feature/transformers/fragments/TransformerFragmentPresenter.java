@@ -80,6 +80,14 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
 
     @Override
     public void saveTransformer() {
+        if(mTransformer.getId() == null) {
+            saveNewTransformer();
+        } else {
+            saveEditedTransformer();
+        }
+    }
+
+    private void saveNewTransformer() {
         Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
                 .flatMap((t) -> {
                     mSharedPreferencesRepository.setToken(t);
@@ -92,6 +100,29 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                 .subscribe();
 
         mCompositeDisposable.add(disposable);
+    }
+
+    private void saveEditedTransformer() {
+        Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
+                .flatMap((t) -> {
+                    mSharedPreferencesRepository.setToken(t);
+                    return mService.updateTransformer("Bearer " + t, mTransformer);
+                } )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess(this::onEditSucceed)
+                .doOnError(this::onEditError)
+                .subscribe();
+
+        mCompositeDisposable.add(disposable);
+    }
+
+    private void onEditError(Throwable throwable) {
+
+    }
+
+    private void onEditSucceed(Response<Transformer> transformerResponse) {
+        mView.finishWithSuccess(transformerResponse.body(), TransformerFragment.ACTION_EDIT);
     }
 
     @Override
@@ -110,7 +141,7 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
 
             mCompositeDisposable.add(disposable);
         } else {
-
+            mView.finishCanceled();
         }
     }
 

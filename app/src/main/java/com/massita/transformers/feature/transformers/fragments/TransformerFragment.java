@@ -468,4 +468,9 @@ public class TransformerFragment extends Fragment implements TransformerFragment
         getActivity().setResult(Activity.RESULT_OK, result);
         getActivity().finish();
     }
+
+    @Override
+    public void finishCanceled() {
+        getActivity().finish();
+    }
 }

@@ -66,6 +66,8 @@ public interface TransformerFragmentContract {
 
         void finishWithSuccess(Transformer transformer, int action);
 
+        void finishCanceled();
+
     }
 
     interface Presenter {
