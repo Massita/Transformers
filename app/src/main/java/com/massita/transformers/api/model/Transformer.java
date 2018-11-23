@@ -166,4 +166,8 @@ public class Transformer {
     public boolean isAutobots() {
         return TEAM_AUTOBOTS.equals(getTeam());
     }
+
+    public int getOverall() {
+        return strength + intelligence + speed + endurance + firepower;
+    }
 }

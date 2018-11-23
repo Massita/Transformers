@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.massita.transformers.R;
 import com.massita.transformers.api.RestClient;
 import com.massita.transformers.api.model.Transformer;
+import com.massita.transformers.feature.dashboard.adapters.TransformersAdapter;
 import com.massita.transformers.util.SharedPreferencesRepository;
 
 import java.util.List;
@@ -85,7 +86,7 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
 
     @Override
     public void showList(List<Transformer> transformersList) {
-        Toast.makeText(getContext(), "Carregou lista", Toast.LENGTH_LONG).show();
+        mRecyclerView.setAdapter(new TransformersAdapter(transformersList));
     }
 
 }
