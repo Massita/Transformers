@@ -21,6 +21,6 @@
     <string name="all_transformers_destroyed">All transformers were destroyed! :(</string>
     <string name="winner_text">The winner is: %s</string>
     <string name="number_of_battles">Number of battles: %d</string>
-    <string name="winning_team_text">The winning team: \n%s</string>
-    <string name="losing_team_text">The survivors of the losing team: \n%s</string>
+    <string name="winning_team_text">The winning team:</string>
+    <string name="losing_team_text">Losing team survivors:</string>
 </resources>

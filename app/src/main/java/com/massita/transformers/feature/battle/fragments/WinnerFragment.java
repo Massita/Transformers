@@ -4,13 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.massita.transformers.R;
+import com.massita.transformers.api.model.Transformer;
+import com.massita.transformers.feature.dashboard.adapters.TransformersAdapter;
 import com.massita.transformers.util.Battle;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,14 +37,14 @@ public class WinnerFragment extends Fragment implements WinnerFragmentContract.V
     @BindView(R.id.text_view_winner)
     TextView winnerText;
 
-    @BindView(R.id.text_view_winning_team)
-    TextView winningTeamText;
+    @BindView(R.id.recycler_view_winning)
+    RecyclerView winningTeamRecyclerView;
 
     @BindView(R.id.text_view_number_of_battles)
     TextView numberOfBattlesText;
 
-    @BindView(R.id.text_view_losing_team)
-    TextView losingTeamText;
+    @BindView(R.id.recycler_view_losing)
+    RecyclerView losingTeamRecyclerView;
 
     private WinnerFragmentContract.Presenter mPresenter;
 
@@ -73,12 +79,16 @@ public class WinnerFragment extends Fragment implements WinnerFragmentContract.V
     }
 
     @Override
-    public void setWinningTeam(String winningTeam) {
-        winningTeamText.setText(getString(R.string.winning_team_text, winningTeam));
+    public void setWinningTeam(List<Transformer> winningTeam) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        winningTeamRecyclerView.setLayoutManager(linearLayoutManager);
+        winningTeamRecyclerView.setAdapter(new TransformersAdapter(winningTeam, null));
     }
 
     @Override
-    public void setLosingTeam(String losingTeam) {
-        losingTeamText.setText(getString(R.string.losing_team_text, losingTeam));
+    public void setLosingTeam(List<Transformer> losingTeam) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        losingTeamRecyclerView.setLayoutManager(linearLayoutManager);
+        losingTeamRecyclerView.setAdapter(new TransformersAdapter(losingTeam, null));
     }
 }

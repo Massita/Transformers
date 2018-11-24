@@ -17,7 +17,8 @@ public class WinnerFragmentPresenter implements WinnerFragmentContract.Presenter
     public void start() {
         mView.setWinner(getWinnerName());
         mView.setNumberOfBattles(mResults.getNumberOfFights());
-
+        mView.setLosingTeam(mResults.getSurvivors());
+        mView.setWinningTeam(mResults.getWinningTeam());
     }
 
     private String getWinnerName() {

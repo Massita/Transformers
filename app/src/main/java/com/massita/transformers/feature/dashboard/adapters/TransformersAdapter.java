@@ -46,7 +46,7 @@ public class TransformersAdapter extends RecyclerView.Adapter<TransformersAdapte
 
     @Override
     public int getItemCount() {
-        return transformers.size();
+        return transformers != null ? transformers.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -70,7 +70,9 @@ public class TransformersAdapter extends RecyclerView.Adapter<TransformersAdapte
                     .into(teamImage);
             transformerName.setText(transformer.getName());
             transformerOverall.setText(itemView.getContext().getString(R.string.overall_text, transformer.getOverall()));
-            itemView.setOnClickListener(v -> itemClickListener.onItemClick(transformer));
+            if(itemClickListener != null) {
+                itemView.setOnClickListener(v -> itemClickListener.onItemClick(transformer));
+            }
         }
     }
 }

@@ -1,5 +1,9 @@
 package com.massita.transformers.feature.battle.fragments;
 
+import com.massita.transformers.api.model.Transformer;
+
+import java.util.List;
+
 public interface WinnerFragmentContract {
 
     interface View {
@@ -8,9 +12,9 @@ public interface WinnerFragmentContract {
 
         void setNumberOfBattles(int numberOfBattles);
 
-        void setWinningTeam(String winningTeam);
+        void setWinningTeam(List<Transformer> winningTeam);
 
-        void setLosingTeam(String losingTeam);
+        void setLosingTeam(List<Transformer> losingTeam);
 
     }
 
