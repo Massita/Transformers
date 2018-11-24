@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Transformers</string>
+    <string name="image_view_team_description">Team\'s avatar</string>
+
+    <string name="autobot">Autobots</string>
+    <string name="decepticon">Decepticon</string>
+
+    <string name="action_fight">Fight!</string>
+    <string name="action_delete">Delete</string>
+
+    <!-- Attr names -->
+    <string name="strength_text">Strength: %d</string>
+    <string name="intelligence_text">Intelligence: %d</string>
+    <string name="speed_text">Speed: %d</string>
+    <string name="endurance_text">Endurance: %d</string>
+    <string name="rank_text">Rank: %d</string>
+    <string name="courage_text">Courage: %d</string>
+    <string name="firepower_text">Firepower: %d</string>
+    <string name="skill_text">Skill: %d</string>
+    <string name="overall_text">Overall: %d</string>
+    <string name="all_transformers_destroyed">All transformers were destroyed! :(</string>
+    <string name="winner_text">The winner is: %s</string>
+    <string name="number_of_battles">Number of battles: %d</string>
+    <string name="winning_team_text">The winning team:</string>
+    <string name="losing_team_text">Losing team survivors:</string>
+    <string name="draw">Draw!</string>
+    <string name="transformer_name">Transformer\'s Name</string>
+    <string name="save">Save</string>
+
+    <string name="generic_error">Something went wrong.</string>
+</resources>
