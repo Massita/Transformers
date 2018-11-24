@@ -54,6 +54,11 @@ public class BattlePresenter implements BattleContract.Presenter {
             return;
         }
 
+        if(results.isDraw()) {
+            mView.showBattleDrawFragment(results);
+            return;
+        }
+
         mView.showBattleWinnerFragment(results);
     }
 }

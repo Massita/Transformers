@@ -10,7 +10,7 @@ public interface BattleContract {
 
         void hideLoading();
 
-        void showBattleDrawFragment();
+        void showBattleDrawFragment(Battle.Results results);
 
         void showBattleWinnerFragment(Battle.Results results);
 

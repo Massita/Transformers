@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.massita.transformers.R;
 import com.massita.transformers.api.model.Transformer;
 import com.massita.transformers.feature.battle.fragments.AllDestroyedFragment;
+import com.massita.transformers.feature.battle.fragments.DrawFragment;
 import com.massita.transformers.feature.battle.fragments.WinnerFragment;
 import com.massita.transformers.util.Battle;
 
@@ -53,12 +54,12 @@ public class BattleActivity extends AppCompatActivity implements BattleContract.
     }
 
     @Override
-    public void showBattleDrawFragment() {
-//        Fragment fragment = TransformerFragment.newInstance();
-//
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.fragment_container, fragment);
-//        fragmentTransaction.commit();
+    public void showBattleDrawFragment(Battle.Results results) {
+        Fragment fragment = DrawFragment.newInstance(results);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
