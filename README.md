@@ -16,22 +16,22 @@ To start building the Transformers application, first you need to configure your
 ## App details
 
 The application has 3 activities.
-1 - The dashboard: This is where your app starts! It lists your created Transformers and has the buttons to
+1. The dashboard: This is where your app starts! It lists your created Transformers and has the buttons to
 access the battle screen, edit or add a new Transformer.
-1.1 - By clicking on the add button(FAB), you'll be redirect to the second activity.
-1.2 - By clicking on the 'fight' button, you'll check the results of the transformer's war.
-1.3 - By clicking on a Transformer, you'll be redirect to it's details and you will be able to edit or delete it.
-2 - On the new transformer's screen, you will give your Transformer a name and edit the attributes.
-3 - The edit screen is the same as the new Transformer's screen,
+* By clicking on the add button(FAB), you'll be redirect to the second activity.
+* By clicking on the 'fight' button, you'll check the results of the transformer's war.
+* By clicking on a Transformer, you'll be redirect to it's details and you will be able to edit or delete it.
+2. On the new transformer's screen, you will give your Transformer a name and edit the attributes.
+3. The edit screen is the same as the new Transformer's screen,
 but you`ll have your data filled based on your selected transformer.
 On this screen, you can click to delete a transformer.
-4 - When clicking to battle, you can have 3 differents screens:
-a) If you have Optimus Prime and a Predaking battling battling each other, or a mirror battle of these Transformers,
+4. When clicking to battle, you can have 3 differents screens:
+  * If you have Optimus Prime and a Predaking battling battling each other, or a mirror battle of these Transformers,
 then all Transformers will be destroyed, with no winner.
-b) If a team eliminates more Transformers of the other team, this team will win the war.
+  * If a team eliminates more Transformers of the other team, this team will win the war.
 On this screen, you can check some details: Number of battles of this war, the members of the winning team
 and the members of the defeated team that didn't battle.
-c) If you have a tie, then the screen will show you that it's a draw and the number of battles.
+  * If you have a tie, then the screen will show you that it's a draw and the number of battles.
 
 Some assumptions made:
 1. The transformer's list is not sorted, but the war will consider the both list sorted.
