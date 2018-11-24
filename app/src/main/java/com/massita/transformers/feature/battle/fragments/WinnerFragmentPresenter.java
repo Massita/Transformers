@@ -21,7 +21,7 @@ public class WinnerFragmentPresenter implements WinnerFragmentContract.Presenter
         mView.setWinningTeam(mResults.getWinningTeam());
     }
 
-    private String getWinnerName() {
+    public String getWinnerName() {
         if(mResults.getAutobotScore() > mResults.getDecepticonScore()) {
             return Transformer.AUTOBOTS;
         }

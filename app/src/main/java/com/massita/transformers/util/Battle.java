@@ -52,7 +52,7 @@ public class Battle {
         return Single.just(results);
     }
 
-    private Results getWinnerTeam(Results results) {
+    public Results getWinnerTeam(Results results) {
         if(results.getDecepticonScore() == results.getAutobotScore()) {
             results.setDraw(true);
             return results;
@@ -71,7 +71,7 @@ public class Battle {
         return results;
     }
 
-    private List<Transformer> getSurvivors(int numberOfFights, List<Transformer> losingTeam) {
+    public List<Transformer> getSurvivors(int numberOfFights, List<Transformer> losingTeam) {
         if(numberOfFights >= losingTeam.size()) {
             return null;
         }
@@ -79,7 +79,7 @@ public class Battle {
         return losingTeam.subList(numberOfFights, losingTeam.size());
     }
 
-    private Results duel(Results results, Transformer autobot, Transformer decepticon) {
+    public Results duel(Results results, Transformer autobot, Transformer decepticon) {
 
         Transformer winner = getWinner(autobot, decepticon);
         if(winner == null){
@@ -95,7 +95,7 @@ public class Battle {
         return results;
     }
     
-    private Transformer getWinner(Transformer transformer1, Transformer transformer2) {
+    public Transformer getWinner(Transformer transformer1, Transformer transformer2) {
         if(transformer1.isOverpower()) {
             return transformer1;
         }
@@ -131,7 +131,7 @@ public class Battle {
         return null;
     }
 
-    private int getNumberOfFights() {
+    public int getNumberOfFights() {
         return Math.min(autobots.size(), decepticons.size());
     }
 
@@ -143,6 +143,10 @@ public class Battle {
         private int decepticonScore;
         private List<Transformer> winningTeam;
         private List<Transformer> survivors;
+
+        public Results() {
+
+        };
 
         public boolean isDraw() {
             return isDraw;
