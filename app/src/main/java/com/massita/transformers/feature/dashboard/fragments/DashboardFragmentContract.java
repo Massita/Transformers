@@ -25,6 +25,8 @@ public interface DashboardFragmentContract {
 
         void startEditTransformerActivity(Transformer transformer);
 
+        void showError(String message);
+
     }
 
     interface Presenter {

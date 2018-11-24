@@ -62,13 +62,15 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
     }
 
     private void onLoadError(Throwable throwable) {
-        //TODO
+        mView.showError(throwable.getMessage());
     }
 
     private void onLoadSucceed(Response<Transformers> listResponse) {
         if(listResponse.isSuccessful() && listResponse.body() != null) {
             mTransformers = listResponse.body().getTransformers();
             mView.showList(mTransformers);
+        } else {
+            mView.showError(null);
         }
     }
 
