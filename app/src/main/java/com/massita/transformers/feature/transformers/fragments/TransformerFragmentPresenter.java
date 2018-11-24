@@ -30,6 +30,7 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
     
     @Override
     public void start() {
+        hideLoading();
         setupValues();
         setupListeners();
     }
@@ -88,6 +89,7 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
     }
 
     private void saveNewTransformer() {
+        mView.showLoading();
         Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
                 .flatMap((t) -> {
                     mSharedPreferencesRepository.setToken(t);
@@ -97,12 +99,14 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(this::onNewSucceed)
                 .doOnError(this::onNewError)
+                .doFinally(this::hideLoading)
                 .subscribe();
 
         mCompositeDisposable.add(disposable);
     }
 
     private void saveEditedTransformer() {
+        mView.showLoading();
         Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
                 .flatMap((t) -> {
                     mSharedPreferencesRepository.setToken(t);
@@ -112,6 +116,7 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(this::onEditSucceed)
                 .doOnError(this::onEditError)
+                .doFinally(this::hideLoading)
                 .subscribe();
 
         mCompositeDisposable.add(disposable);
@@ -127,6 +132,7 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
 
     @Override
     public void deleteTransformer() {
+        mView.showLoading();
         if(mTransformer.getId() != null) {
             Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
                     .flatMap((t) -> {
@@ -137,12 +143,18 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSuccess(this::onDeleteSucceed)
                     .doOnError(this::onDeleteError)
+                    .doFinally(this::hideLoading)
                     .subscribe();
 
             mCompositeDisposable.add(disposable);
         } else {
+            mView.hideLoading();
             mView.finishCanceled();
         }
+    }
+
+    private void hideLoading() {
+        mView.hideLoading();
     }
 
     private void onDeleteError(Throwable throwable) {

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -40,6 +41,9 @@ public class TransformerFragment extends Fragment implements TransformerFragment
     public static final int ACTION_DELETE = 2;
 
     private TransformerFragmentContract.Presenter mPresenter;
+
+    @BindView(R.id.progress_group)
+    Group progressGroup;
 
     @BindView(R.id.name_input_text)
     EditText nameEditText;
@@ -472,5 +476,15 @@ public class TransformerFragment extends Fragment implements TransformerFragment
     @Override
     public void finishCanceled() {
         getActivity().finish();
+    }
+
+    @Override
+    public void showLoading() {
+        progressGroup.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressGroup.setVisibility(View.GONE);
     }
 }

@@ -68,6 +68,10 @@ public interface TransformerFragmentContract {
 
         void finishCanceled();
 
+        void showLoading();
+
+        void hideLoading();
+
     }
 
     interface Presenter {
