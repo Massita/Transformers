@@ -97,10 +97,9 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                 } )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSuccess(this::onNewSucceed)
-                .doOnError(this::onNewError)
                 .doFinally(this::hideLoading)
-                .subscribe();
+                .subscribe(this::onNewSucceed,
+                        this::onNewError);
 
         mCompositeDisposable.add(disposable);
     }
@@ -114,20 +113,23 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                 } )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSuccess(this::onEditSucceed)
-                .doOnError(this::onEditError)
                 .doFinally(this::hideLoading)
-                .subscribe();
+                .subscribe(this::onEditSucceed,
+                        this::onEditError);
 
         mCompositeDisposable.add(disposable);
     }
 
     private void onEditError(Throwable throwable) {
-
+        mView.showError(throwable.getMessage());
     }
 
     private void onEditSucceed(Response<Transformer> transformerResponse) {
-        mView.finishWithSuccess(transformerResponse.body(), TransformerFragment.ACTION_EDIT);
+        if(transformerResponse.isSuccessful()) {
+            mView.finishWithSuccess(transformerResponse.body(), TransformerFragment.ACTION_EDIT);
+        } else {
+            mView.showError(null);
+        }
     }
 
     @Override
@@ -141,10 +143,9 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
                     } )
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSuccess(this::onDeleteSucceed)
-                    .doOnError(this::onDeleteError)
                     .doFinally(this::hideLoading)
-                    .subscribe();
+                    .subscribe(this::onDeleteSucceed,
+                            this::onDeleteError);
 
             mCompositeDisposable.add(disposable);
         } else {
@@ -158,19 +159,27 @@ public class TransformerFragmentPresenter implements TransformerFragmentContract
     }
 
     private void onDeleteError(Throwable throwable) {
-        // TODO
+        mView.showError(throwable.getMessage());
     }
 
     private void onDeleteSucceed(Response<Void> voidResponse) {
-        mView.finishWithSuccess(mTransformer, TransformerFragment.ACTION_DELETE);
+        if(voidResponse.isSuccessful()) {
+            mView.finishWithSuccess(mTransformer, TransformerFragment.ACTION_DELETE);
+        } else {
+            mView.showError(null);
+        }
     }
 
     private void onNewError(Throwable throwable) {
-        // TODO
+        mView.showError(throwable.getMessage());
     }
 
     private void onNewSucceed(Response<Transformer> transformerResponse) {
-        mView.finishWithSuccess(transformerResponse.body(), TransformerFragment.ACTION_NEW);
+        if (transformerResponse.isSuccessful()) {
+            mView.finishWithSuccess(transformerResponse.body(), TransformerFragment.ACTION_NEW);
+        } else {
+            mView.showError(null);
+        }
     }
 
     @Override

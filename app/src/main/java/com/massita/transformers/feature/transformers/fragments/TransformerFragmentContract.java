@@ -72,6 +72,8 @@ public interface TransformerFragmentContract {
 
         void hideLoading();
 
+        void showError(String message);
+
     }
 
     interface Presenter {

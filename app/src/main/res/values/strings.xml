@@ -26,4 +26,6 @@
     <string name="draw">Draw!</string>
     <string name="transformer_name">Transformer\'s Name</string>
     <string name="save">Save</string>
+
+    <string name="generic_error">Something went wrong.</string>
 </resources>

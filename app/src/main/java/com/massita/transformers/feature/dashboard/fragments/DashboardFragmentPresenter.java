@@ -50,10 +50,9 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
                 } )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSuccess(this::onLoadSucceed)
-                .doOnError(this::onLoadError)
                 .doFinally(this::doFinally)
-                .subscribe();
+                .subscribe(this::onLoadSucceed,
+                        this::onLoadError);
 
         mCompositeDisposable.add(disposable);
     }
