@@ -1,22 +1,14 @@
 package com.massita.transformers.feature.dashboard;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.massita.transformers.R;
-import com.massita.transformers.feature.battle.BattleActivity;
 import com.massita.transformers.feature.dashboard.fragments.DashboardFragment;
-import com.massita.transformers.feature.transformers.TransformersActivity;
-import com.massita.transformers.util.Battle;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DashboardActivity extends AppCompatActivity implements DashboardContract.View {
 

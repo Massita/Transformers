@@ -8,10 +8,7 @@ import com.massita.transformers.feature.transformers.fragments.TransformerFragme
 import com.massita.transformers.util.SharedPreferencesRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import io.reactivex.Scheduler;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
