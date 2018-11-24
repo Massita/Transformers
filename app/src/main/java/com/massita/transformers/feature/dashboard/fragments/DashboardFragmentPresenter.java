@@ -42,6 +42,7 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
 
     @Override
     public void loadTransformers() {
+        mView.showLoading();
         Disposable disposable = new RestClient().checkToken(mSharedPreferencesRepository)
                 .flatMap((t) -> {
                     mSharedPreferencesRepository.setToken(t);
@@ -51,9 +52,14 @@ public class DashboardFragmentPresenter implements DashboardFragmentContract.Pre
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(this::onLoadSucceed)
                 .doOnError(this::onLoadError)
+                .doFinally(this::doFinally)
                 .subscribe();
 
         mCompositeDisposable.add(disposable);
+    }
+
+    private void doFinally() {
+        mView.hideLoading();
     }
 
     private void onLoadError(Throwable throwable) {

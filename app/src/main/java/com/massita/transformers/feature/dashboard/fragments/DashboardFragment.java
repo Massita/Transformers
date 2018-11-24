@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +43,9 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
 
     @BindView(R.id.recycler_view)
     protected RecyclerView mRecyclerView;
+
+    @BindView(R.id.progress_group)
+    Group progressGroup;
 
     public static DashboardFragment newInstance() {
         return new DashboardFragment();
@@ -99,12 +103,12 @@ public class DashboardFragment extends Fragment implements DashboardFragmentCont
 
     @Override
     public void showLoading() {
-
+        progressGroup.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressGroup.setVisibility(View.GONE);
     }
 
     @Override
